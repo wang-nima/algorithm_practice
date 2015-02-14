@@ -1,0 +1,13 @@
+I don't think their is an O(n) solution. Because the time complexity must related to k. If k equal to the total number of words, you must sort the array of the words. There is no O(n) sorting algorithm.
+
+My solution:
+1. Build a trie tree, each leaf node also store the frequency of the word. O(n)
+2. Maintain a min heap to get the biggest k word frequency. min heap’s size is k
+	a. make heap(k)
+	b. if the next word’s frequency is bigger than the minimum in min heap extract min and put the number in heap O((n-k)*logk)
+	a,b total O(n*logk)
+3. Sort the k biggest frequency string O(k*logk)
+1,2,3 total I think it is O(n*logk)
+
+Trie is better than hashtable for this problem. For example two string "aaaaab" "aaaaac". Hashtable stores 2 strings twice. However, trie tree stores the commom prefix once and stores the last two different character b and c.
+

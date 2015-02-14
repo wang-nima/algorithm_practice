@@ -1,0 +1,38 @@
+files open for update (those which include a "+" sign), on which both input and output operations are allowed, the stream shall be flushed (fflush) or repositioned (fseek, fsetpos, rewind) before a reading operation that follows a writing operation. The stream shall be repositioned (fseek, fsetpos, rewind) before a writing operation that follows a reading operation (whenever that operation did not reach the end-of-file).
+
+Return Value
+If the file is successfully opened, the function returns a pointer to a FILE object that can be used to identify the stream on future operations.
+Otherwise, a null pointer is returned.
+On most library implementations, the errno variable is also set to a system-specific error code on failure.
+
+Example
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+/* fopen example */
+#include <stdio.h>
+int main ()
+{
+  FILE * pFile;
+  pFile = fopen ("myfile.txt","w");
+  if (pFile!=NULL)
+  {
+    fputs ("fopen example",pFile);
+    fclose (pFile);
+  }
+  return 0;
+}
+Edit & Run
+
+
+See also
