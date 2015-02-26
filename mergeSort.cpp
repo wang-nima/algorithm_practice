@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <cassert>
 using namespace std;
 
 void combine(int *a, int n1, int n2) {
@@ -21,19 +22,10 @@ void combine(int *a, int n1, int n2) {
 	}
 	//combine the rest part to b
 	if(i == n1) {
-		while(j != n1 + n2) {
-			b[k] = a[j];
-			j++;
-			k++;
-		}
+		memcpy(b + k, a + j, (n1 + n2 - j) * sizeof(int));
 	} else {	//j == n2
-		while(i != n1) {
-			b[k] = a[i];
-			i++;
-			k++;
-		}
+		memcpy(b + k, a + i, (n1 - i) * sizeof(int));
 	}
-	//k == n1 + n2 now
 	memcpy(a, b, (n1+n2)*sizeof(int));
 }
 
