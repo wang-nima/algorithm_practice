@@ -27,6 +27,7 @@ void combine(int *a, int n1, int n2) {
 		memcpy(b + k, a + i, (n1 - i) * sizeof(int));
 	}
 	memcpy(a, b, (n1+n2)*sizeof(int));
+	free(b);
 }
 
 void mergeSort(int *a, int n) {
