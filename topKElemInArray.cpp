@@ -32,7 +32,7 @@ int main()
 	vector<int> v(a, a + n);
 	int k = 3;
 	vector<int> top = topKElem(v, k);
-	for(int i = 0; i < k; i++) {
+	for(int i = 0; i < top.size(); i++) {
 		cout << top[i] << endl;
 	}
 	cout << endl;
