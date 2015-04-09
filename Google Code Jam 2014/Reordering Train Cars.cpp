@@ -4,6 +4,14 @@
 #include <string>
 using namespace std;
 
+string add(string a, string b) {
+	if (a.back() == b[0]) {
+		string ret = a;
+		a.pop_back();
+	}
+	return a + b;
+}
+
 
 bool f(string s) {
 	unordered_set<char> set;
@@ -11,9 +19,7 @@ bool f(string s) {
 		if (set.find(s[i]) == set.end()) {
 			set.insert(s[i]);
 		} else {
-			if (s[i] != s[i-1]) {
-				return false;
-			}
+			return false;
 		}
 	}
 	return true;
@@ -23,7 +29,7 @@ void f(vector<int> &a, int index, int n, int &sum, vector<string> s) {
 	if (index == n) {
 		string temp;
 		for (int i = 0; i < n; i++) {
-			temp += s[a[i]];
+			temp = add(temp, s[a[i]]);
 		}
 		if (f(temp)) {
 			sum++;
@@ -37,6 +43,18 @@ void f(vector<int> &a, int index, int n, int &sum, vector<string> s) {
 	}
 }
 
+string collapse(string s) {
+	string ret;
+	ret.push_back(s[0]);
+	for (int i = 1; i < s.size(); i++) {
+		if (s[i] != ret.back()) {
+			ret.push_back(s[i]);
+		}
+	}
+	return ret;
+}
+
+
 int main () { 
 	int t;
 	cin >> t;
@@ -48,7 +66,7 @@ int main () {
 		for (int j = 0; j < n; j++) {
 			string t;
 			cin >> t;
-			v.push_back(t);
+			v.push_back(collapse(t));
 		}
 		vector<int> a = {0, 1, 2, 3, 4, 5 ,6, 7, 8, 9};
 		int sum = 0;
